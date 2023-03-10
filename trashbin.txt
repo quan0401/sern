@@ -1,0 +1,12 @@
+FROM `table` WHERE `name` = "Page" AND `age` > 45
+ 
+class="container"
+ 
+(req, res) => {
+    return res.send("I'm Quan");
+  }
+ 
+(req, res) => {
+    return res.render("home.ejs");
+  }
+ 
