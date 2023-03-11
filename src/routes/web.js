@@ -1,16 +1,12 @@
 import express from "express";
-import {
-  handleCreateNewUser,
-  handleHomeController,
-  handleUserPage,
-} from "../controller/homeController";
+import * as homeController from "../controller/homeController";
 
 const router = express.Router();
 
 const initWebRoutes = (app) => {
-  router.get("/", handleHomeController);
-  router.get("/user", handleUserPage);
-  router.post("/users/create-user", handleCreateNewUser);
+  router.get("/", homeController.handleHomeController);
+  router.get("/user", homeController.handleUserPage);
+  router.post("/users/create-user", homeController.handleCreateNewUser);
   return app.use("/", router);
 };
 export default initWebRoutes;

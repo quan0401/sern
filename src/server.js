@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 initWebRoutes(app);
 
 const PORT = process.env.PORT || 8081;
+
 app.listen(PORT, () => {
   console.log(">>> SERN is running on the port", PORT);
 });
