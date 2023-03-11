@@ -6,7 +6,6 @@ const handleHomeController = (req, res) => {
 
 const handleUserPage = async (req, res) => {
   let userList = await userService.getUserList();
-  // userList = JSON.stringify(userList);
   userService.deleteUser(47);
   return res.render("user.ejs", { userList });
 };
@@ -23,9 +22,28 @@ const handleDeleteUser = async (req, res) => {
   res.redirect("/user");
 };
 
+const handleUpdateUserPage = async (req, res) => {
+  const id = req.params.id;
+  let userData = {};
+  let user = await userService.getUserById(id);
+
+  if (user && user.length > 0) {
+    userData = { ...user[0] };
+  }
+  res.render("updateUser.ejs", { userData });
+};
+
+const handleUpdateUser = (req, res) => {
+  const { username, email, id } = req.body;
+  userService.updateUserInfo(username, email, id);
+  res.redirect("/user");
+};
+
 export {
   handleHomeController,
   handleUserPage,
   handleCreateNewUser,
   handleDeleteUser,
+  handleUpdateUserPage,
+  handleUpdateUser,
 };
