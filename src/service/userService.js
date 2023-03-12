@@ -30,7 +30,7 @@ const createNewUser = async (username, email, password) => {
   });
 
   try {
-    const [rows, fields] = await connection.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?);', [
+    const [rows, fields] = await connection.execute('INSERT INTO user (username, email, password) VALUES (?, ?, ?);', [
       username,
       email,
       userPass,
@@ -41,7 +41,7 @@ const createNewUser = async (username, email, password) => {
   }
 
   // connection.query(
-  //   "INSERT INTO users (username, email, password) VALUES (?, ?, ?);",
+  //   "INSERT INTO user (username, email, password) VALUES (?, ?, ?);",
   //   [username, email, userPass],
 
   //   function (err, results, fields) {
@@ -60,7 +60,7 @@ const getUserList = async () => {
     Promise: bluebird,
   });
   // return connection.query(
-  //   "Select * From users",
+  //   "Select * From user",
   //   function (err, results, fields) {
   //     if (err) {
   //       console.log(err);
@@ -71,7 +71,7 @@ const getUserList = async () => {
   // );
 
   try {
-    const [rows, fields] = await connection.execute('SELECT * FROM users');
+    const [rows, fields] = await connection.execute('SELECT * FROM user');
     return rows;
   } catch (error) {
     console.log(error);
@@ -87,7 +87,7 @@ const deleteUser = async (id) => {
   });
 
   try {
-    const [rows, fields] = await connection.execute('DELETE FROM users WHERE id = ?', [id]);
+    const [rows, fields] = await connection.execute('DELETE FROM user WHERE id = ?', [id]);
     return rows;
   } catch (error) {
     console.log(error);
@@ -103,7 +103,7 @@ const getUserById = async (id) => {
   });
 
   try {
-    const [rows, fields] = await connection.execute('Select * FROM users WHERE id = ?', [id]);
+    const [rows, fields] = await connection.execute('Select * FROM user WHERE id = ?', [id]);
     return rows;
   } catch (error) {
     console.log(error);
@@ -119,7 +119,7 @@ const updateUserInfo = async (username, email, id) => {
   });
 
   try {
-    const [rows, fields] = await connection.execute('UPDATE users SET username = ?, email = ? WHERE id = ?', [
+    const [rows, fields] = await connection.execute('UPDATE user SET username = ?, email = ? WHERE id = ?', [
       username,
       email,
       id,
